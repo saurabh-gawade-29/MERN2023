@@ -9,8 +9,10 @@ const home = async (req, res) => {
 
 //TODO: Register Logic
 const register = async (req, res) => {
+  debugger;
   try {
-    res.status(200).send("Register Page");
+    let data = req.body;
+    res.status(200).json({ data: data });
   } catch (error) {
     console.log("ERROR", error);
   }

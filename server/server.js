@@ -2,9 +2,13 @@
 const express = require("express");
 const app = express();
 const router = require("./router/auth-router");
+const connectToDB = require("./utils/db");
 
 //! Static PORT
 const PORT = 5000;
+
+//! Middleware --- For Exchange Data in JSON - always before routes
+app.use(express.json());
 
 //* Home
 //TODO app.get(path, callback): This method is used to define a route for handling HTTP GET requests.
@@ -21,7 +25,7 @@ app.get("/", (req, res) => {
 });
 
 //! New : There is some error in below line
-// router.route("/sau").get((req, res) => res.status(200).send("Welcome to MERN2023"));
+// router.route("/").get((req, res) => res.status(200).send("Welcome to MERN2023"));
 
 //* All Routes come from router folder
 
@@ -40,6 +44,8 @@ app.use("/api/auth", router);
  This method is used to start the Express application 
  listening for incoming requests on a specified port and optional hostname. 
 */
-app.listen(PORT, () => {
-  console.log(`Server listening at http://localhost:${PORT}`);
+connectToDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server listening at http://localhost:${PORT}`);
+  });
 });

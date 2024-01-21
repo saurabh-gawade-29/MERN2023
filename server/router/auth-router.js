@@ -8,7 +8,7 @@ const authControllers = require("../controllers/auth-controller");
 router.route("/").get(authControllers.home);
 
 //TODO: http://localhost:5000/api/auth/register
-router.route("/register").get(authControllers.register);
+router.route("/register").post(authControllers.register);
 
 //TODO: http://localhost:5000/api/auth/login
 router.route("/login").get(authControllers.login);
