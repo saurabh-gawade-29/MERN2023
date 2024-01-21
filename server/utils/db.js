@@ -1,12 +1,19 @@
 const mongoose = require("mongoose");
 
-const URI = "mongodb://127.0.0.1:27017/MERN2023";
+//! using shell =>  mongosh
+// const URI = "mongodb://127.0.0.1:27017/MERN2023";
+
+//TODO: if you use  @ ====> %40   <== use this at that place
+//! using atlas
+const URI =
+  "mongodb+srv://saurabh:saurabh%40123@cluster0.pfcv4mx.mongodb.net/MERN2023?retryWrites=true&w=majority";
 
 const connectToDB = async () => {
   try {
     await mongoose.connect(URI);
     console.log("Connection Successful to DB");
   } catch (error) {
+    console.log(error);
     console.error("DB Connection Failed");
     process.exit(0);
   }
