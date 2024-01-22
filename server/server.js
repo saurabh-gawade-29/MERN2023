@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const router = require("./router/auth-router");
+const baserouter = require("./router/base-router");
 const connectToDB = require("./utils/db");
 
 //! Static PORT
@@ -20,11 +21,11 @@ app.use(express.json());
  * app.delete etc...
  */
 //! Old Style
-app.get("/", (req, res) => {
-  res.status(200).send("Welcome to MERN2023");
-});
+// app.get("/", (req, res) => {
+//   res.status(200).send("Welcome to MERN2023");
+// });
 
-//! New : There is some error in below line
+//! New : There is some error in below line - solution: Create another router 
 // router.route("/").get((req, res) => res.status(200).send("Welcome to MERN2023"));
 
 //* All Routes come from router folder
@@ -37,6 +38,7 @@ the response object (res), and the next middleware function in the applicationâ€
 They can modify the request and response objects, terminate the request-response cycle, or call the next middleware function in the stack.
 */
 
+app.use("/", baserouter);
 app.use("/api/auth", router);
 
 /*
