@@ -45,10 +45,10 @@ userSchema.pre("save", async function (next) {
   }
 });
 
+//* IMP: do not write arrow function in below methods coz you will not get value in ==>  this
 //TODO: We Can Create Multiple Methods in userSchema
 userSchema.methods.generateToken = async function () {
   debugger;
-  console.log(this, "what in this this");
   try {
     //* JWT Parameter: payload, secretOrPrivateKey, options
     return await jwt.sign(
