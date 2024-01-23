@@ -4,7 +4,7 @@ const baserouter = express.Router();
 
 //! Named Export
 router.route("/").get((req, res) => {
-  res.status(200).send("Welcome to MERN");
+  res.status(200).send("Welcome to MERN2023");
 });
 
 module.exports = baserouter;
