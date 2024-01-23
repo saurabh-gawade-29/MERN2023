@@ -1,3 +1,5 @@
+//! Without this import we can't use env variable and it's always on top
+require("dotenv").config();
 //! Imports
 const express = require("express");
 const app = express();
@@ -25,7 +27,7 @@ app.use(express.json());
 //   res.status(200).send("Welcome to MERN2023");
 // });
 
-//! New : There is some error in below line - solution: Create another router 
+//! New : There is some error in below line - solution: Create another router
 // router.route("/").get((req, res) => res.status(200).send("Welcome to MERN2023"));
 
 //* All Routes come from router folder

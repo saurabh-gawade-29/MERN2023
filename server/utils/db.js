@@ -5,8 +5,7 @@ const mongoose = require("mongoose");
 
 //TODO: if you use  @ ====> %40   <== use this at that place
 //! using atlas
-const URI =
-  "mongodb+srv://saurabh:saurabh%40123@cluster0.pfcv4mx.mongodb.net/MERN2023?retryWrites=true&w=majority";
+const URI = process.env.MONGODB_URL;
 
 const connectToDB = async () => {
   try {
