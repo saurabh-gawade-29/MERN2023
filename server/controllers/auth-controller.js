@@ -1,5 +1,6 @@
 //! Imports
 const User = require("../models/user-model");
+// const bcrypt = require('bcrypt');
 
 //TODO: Home Logic
 const home = async (req, res) => {
@@ -20,12 +21,18 @@ const register = async (req, res) => {
     if (userExist) {
       return res.status(400).json({ msg: "Email is already Exist" });
     }
+    //! BcryptJS - We Do it in User Model - Centralized Way
+    //* hash = password + Salt
+    //* Number of salt rounds, determines the complexity of the hash
+    // const saltRounds = 10;
+    // const salt = bcrypt.genSaltSync(saltRounds);
+    // const hash = bcrypt.hashSync(password, salt);
     //* If User Not Present
     const userCreated = await User.create({
-      username: username,
-      email: email,
-      phone: phone,
-      password: password,
+      username,
+      email,
+      phone,
+      password,
     });
     res.status(200).json({ msg: userCreated });
   } catch (error) {
