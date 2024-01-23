@@ -11,6 +11,6 @@ router.route("/").get(authControllers.home);
 router.route("/register").post(authControllers.register);
 
 //TODO: http://localhost:5000/api/auth/login
-router.route("/login").get(authControllers.login);
+router.route("/login").post(authControllers.login);
 
 module.exports = router;

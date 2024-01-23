@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+var jwt = require("jsonwebtoken");
 
 //! Need to Create new object of the Schema - BluePrint-> Object
 const userSchema = new mongoose.Schema({
@@ -43,6 +44,39 @@ userSchema.pre("save", async function (next) {
     next(error);
   }
 });
+
+//TODO: We Can Create Multiple Methods in userSchema
+userSchema.methods.generateToken = async function () {
+  debugger;
+  console.log(this, "what in this this");
+  try {
+    //* JWT Parameter: payload, secretOrPrivateKey, options
+    return await jwt.sign(
+      {
+        userId: this._id.toString(),
+        email: this.email,
+        isAdmin: this.isAdmin,
+      },
+      process.env.JWT_SECRET_KEY,
+      {
+        expiresIn: "30d",
+      }
+    );
+  } catch (error) {
+    console.log(error, "Error in generateToken");
+  }
+};
+
+//! Compare Password Method
+userSchema.methods.comparePassword = async function (password) {
+  debugger;
+  try {
+    return await bcrypt.compare(password, this.password);
+  } catch (error) {
+    console.log(error, "Error in comaprePassword");
+  }
+};
+
 //! Define model name or the collection name
 //* it will automatic create users collection in atlas
 const User = new mongoose.model("User", userSchema);

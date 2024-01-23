@@ -1,6 +1,6 @@
 //! Imports
 const User = require("../models/user-model");
-// const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 //TODO: Home Logic
 const home = async (req, res) => {
@@ -15,7 +15,7 @@ const home = async (req, res) => {
 const register = async (req, res) => {
   debugger;
   try {
-    let { username, email, phone, password } = req.body;
+    let { username, email, phone, password, isAdmin } = req.body;
     //* Check for User Exist
     let userExist = await User.findOne({ email: email });
     if (userExist) {
@@ -33,19 +33,43 @@ const register = async (req, res) => {
       email,
       phone,
       password,
+      isAdmin,
     });
-    res.status(200).json({ msg: userCreated });
+    res.status(201).json({
+      // msg: userCreated,
+      msg: "Registration Successful",
+      token: await userCreated.generateToken(),
+      userId: userCreated._id.toString(),
+    });
   } catch (error) {
-    console.log("ERROR", error);
+    json.status(500).json("Internal Server Error");
   }
 };
 
 //TODO: Login Logic
 const login = async (req, res) => {
+  debugger;
   try {
-    res.status(200).send("Login Page");
+    const { email, password } = req.body;
+    const userExist = await User.findOne({ email });
+    if (!userExist) {
+      return res.status(400).json({
+        msg: "Invalid Credentials",
+      });
+    }
+    // const user = await bcrypt.compare(password, this.password);
+    const user = await userExist.comparePassword(password);
+    if (user) {
+      res.status(201).json({
+        msg: "Login Successful",
+        token: await userExist.generateToken(),
+        userId: userExist._id.toString(),
+      });
+    } else {
+      res.status(401).json({ message: "Invalid Email or Password" });
+    }
   } catch (error) {
-    console.log("ERROR", error);
+    res.status(500).json({ error: error, msg: "Internal Server Error" });
   }
 };
 
