@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap");
+
+/* Button */
+.myBTN {
+  border: none;
+  border-radius: 0.4rem;
+  color: white;
+  font-weight: 600;
+  background-color: #ff735c;
+  padding: 0.8rem;
+  outline: none;
+}
+
+.myBTN:hover {
+  transform: scale(1.05);
+}
+
+/* Navbar*/
+.navbarBrand {
+  letter-spacing: 0.3rem;
+  font-family: "Archivo Black", sans-serif;
+}
+
+/* Footer */
+.bgFooter {
+  background-color: #ca5140;
+}
