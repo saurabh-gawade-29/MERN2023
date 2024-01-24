@@ -41,4 +41,24 @@ const signupSchema = z.object({
   }),
 });
 
-module.exports = signupSchema;
+//! Creating Object Scehma for validation
+const loginSchema = z.object({
+  email: z
+    .string({
+      required_error: "Email is Required",
+    })
+    .trim()
+    .email({ message: "Invalid Email Address" })
+    .min(3, { message: "Email must be at least 3 Chars" })
+    .max(255, {
+      message: "Email must not be more than 255 Charachter",
+    }),
+  password: z
+    .string({
+      required_error: "Password is Required",
+    })
+    .trim()
+    .min(5, { message: "Password must be at least 5 Charachter" }),
+});
+
+module.exports = { signupSchema, loginSchema };
