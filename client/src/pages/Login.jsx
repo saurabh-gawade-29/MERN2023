@@ -8,12 +8,12 @@ const Login = () => {
     <>
       <div className="container">
         <div className="row">
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-5">
+          <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-3">
             <div className="wrap-register-img">
               <img src={loginImg} alt="" className="img-fluid" />
             </div>
           </div>
-          <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-5">
+          <div className="col-12 col-sm-12 col-md-6 col-lg-6 my-3">
             <h3 className="display-6 text-white fw-bold mb-3">Login Now</h3>
             <form className="" onSubmit={handleSubmit}>
               <div className="form-floating mb-3">
