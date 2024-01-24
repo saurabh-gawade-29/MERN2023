@@ -41,7 +41,7 @@ the response object (res), and the next middleware function in the applicationâ€
 They can modify the request and response objects, terminate the request-response cycle, or call the next middleware function in the stack.
 */
 
-app.use("/api/form", baserouter);
+app.use("/", baserouter);
 app.use("/api/auth", router);
 
 /*

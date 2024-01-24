@@ -1,8 +1,11 @@
 const express = require("express");
-const router = express.Router();
+const baserouter = express.Router();
 const contactForm = require("../controllers/contact-controller")
 
 //! Named Export
-router.route("/contact").post(contactForm);
+baserouter.route("/").get((req, res)=> {
+    res.send("Welcome to MERN2023")
+});
+baserouter.route("/contact").post(contactForm);
 
-module.exports = router;
+module.exports = baserouter;
