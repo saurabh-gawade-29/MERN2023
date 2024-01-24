@@ -6,6 +6,7 @@ const app = express();
 const router = require("./router/auth-router");
 const baserouter = require("./router/base-router");
 const connectToDB = require("./utils/db");
+const errorMiddleware = require("./middlewares/error-middleware");
 
 //! Static PORT
 const PORT = 5000;
@@ -48,6 +49,8 @@ app.use("/api/auth", router);
  This method is used to start the Express application 
  listening for incoming requests on a specified port and optional hostname. 
 */
+//! Always Call Error Middleware before connection
+app.use(errorMiddleware)
 connectToDB().then(() => {
   app.listen(PORT, () => {
     console.log(`Server listening at http://localhost:${PORT}`);

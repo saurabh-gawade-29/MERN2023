@@ -26,11 +26,19 @@ const signupSchema = z.object({
       required_error: "Phone is Required",
     })
     .trim()
-    .email({ message: "Invalid Phone Number" })
     .min(10, { message: "Phone must be at least 10 Charachter" })
     .max(20, {
       message: "Phone must not be more than 20 Charachter",
     }),
+  password: z
+    .string({
+      required_error: "Password is Required",
+    })
+    .trim()
+    .min(5, { message: "Password must be at least 5 Charachter" }),
+  isAdmin: z.boolean({
+    required_error: "isAdmin is Required",
+  }),
 });
 
 module.exports = signupSchema;
