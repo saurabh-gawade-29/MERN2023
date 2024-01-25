@@ -1,20 +1,23 @@
 import { useState } from "react";
 import contactImg from "../assets/contact.png";
+import axios from "axios";
 
+const URI = import.meta.env.VITE_API_URL;
 const Contact = () => {
   //! States
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   //! Submit Button
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let data = {
       username,
       email,
       message,
     };
-    console.log(data);
+    const response = await axios.post(`${URI}contact`, data);
+    alert(response.data.message);
   };
   //! Clear Button
   const handleClear = () => {
