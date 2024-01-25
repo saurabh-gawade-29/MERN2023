@@ -1,8 +1,18 @@
+import { useState } from "react";
 import loginImg from "../assets/login.png";
 
 const Login = () => {
+  //! States
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  //! Submit Button
   const handleSubmit = (e) => {
     e.preventDefault();
+    let data = {
+      email,
+      password,
+    };
+    console.log(data);
   };
   return (
     <>
@@ -18,6 +28,9 @@ const Login = () => {
             <form className="" onSubmit={handleSubmit}>
               <div className="form-floating mb-3">
                 <input
+                  autoComplete="off"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   type="email"
                   className="form-control"
@@ -29,6 +42,9 @@ const Login = () => {
 
               <div className="form-floating mb-3">
                 <input
+                  autoComplete="off"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   type="password"
                   className="form-control"

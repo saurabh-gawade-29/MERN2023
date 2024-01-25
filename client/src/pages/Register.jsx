@@ -1,9 +1,24 @@
+import { useState } from "react";
 import registerImg from "../assets/register.png";
 
 const Register = () => {
+  //! States
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [password, setPassword] = useState("");
+  //! Submit Button
   const handleSubmit = (e) => {
     e.preventDefault();
+    let data = {
+      username,
+      email,
+      mobile,
+      password,
+    };
+    console.log(data);
   };
+
   return (
     <>
       <div className="container">
@@ -18,6 +33,9 @@ const Register = () => {
             <form className="" onSubmit={handleSubmit}>
               <div className="form-floating mb-3 text-dark">
                 <input
+                  autoComplete="off"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
                   type="text"
                   className="form-control"
@@ -28,6 +46,9 @@ const Register = () => {
               </div>
               <div className="form-floating mb-3">
                 <input
+                  autoComplete="off"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   type="email"
                   className="form-control"
@@ -38,6 +59,9 @@ const Register = () => {
               </div>
               <div className="form-floating mb-3">
                 <input
+                  autoComplete="off"
+                  value={mobile}
+                  onChange={(e) => setMobile(e.target.value)}
                   required
                   type="number"
                   className="form-control"
@@ -48,6 +72,9 @@ const Register = () => {
               </div>
               <div className="form-floating mb-3">
                 <input
+                  autoComplete="off"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   type="password"
                   className="form-control"

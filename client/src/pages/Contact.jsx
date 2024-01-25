@@ -1,8 +1,26 @@
+import { useState } from "react";
 import contactImg from "../assets/contact.png";
 
 const Contact = () => {
+  //! States
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  //! Submit Button
   const handleSubmit = (e) => {
     e.preventDefault();
+    let data = {
+      username,
+      email,
+      message,
+    };
+    console.log(data);
+  };
+  //! Clear Button
+  const handleClear = () => {
+    setUsername("");
+    setEmail("");
+    setMessage("");
   };
   return (
     <>
@@ -18,6 +36,9 @@ const Contact = () => {
             <form className="" onSubmit={handleSubmit}>
               <div className="form-floating mb-3 text-dark">
                 <input
+                  autoComplete="off"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
                   type="text"
                   className="form-control"
@@ -28,6 +49,9 @@ const Contact = () => {
               </div>
               <div className="form-floating mb-3">
                 <input
+                  autoComplete="off"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   required
                   type="email"
                   className="form-control"
@@ -39,6 +63,9 @@ const Contact = () => {
 
               <div className="form-floating mb-3">
                 <textarea
+                  autoComplete="off"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   rows="6"
                   required
                   type="text"
@@ -48,9 +75,14 @@ const Contact = () => {
                 ></textarea>
                 <label htmlFor="floatingPassword4">Message</label>
               </div>
-              <button type="submit" className="myBTN">
-                Log In
-              </button>
+              <div className="wrap-btn">
+                <button type="submit" className="myBTN me-2">
+                  Submit
+                </button>
+                <button type="button" className="myBTN" onClick={handleClear}>
+                  Clear
+                </button>
+              </div>
             </form>
           </div>
         </div>
