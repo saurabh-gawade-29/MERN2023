@@ -1,8 +1,7 @@
 import { useState } from "react";
 import contactImg from "../assets/contact.png";
-import axios from "axios";
+import { serviceCallPost } from "../utils/Helper";
 
-const URI = import.meta.env.VITE_API_URL;
 const Contact = () => {
   //! States
   const [username, setUsername] = useState("");
@@ -16,7 +15,7 @@ const Contact = () => {
       email,
       message,
     };
-    const response = await axios.post(`${URI}contact`, data);
+    const response = await serviceCallPost(`contact`, data);
     alert(response.data.message);
   };
   //! Clear Button
