@@ -25,3 +25,41 @@
 .bgFooter {
   background-color: #ca5140;
 }
+
+/* Home */
+.home-welcome {
+  font-size: calc(2.5em + 2vw);
+  font-weight: 700;
+}
+
+.home-para {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.wrap-home-img {
+  display: flex;
+  justify-content: center;
+}
+
+.home-hero-text {
+  display: inline-block;
+  border-bottom: 2px solid #ff735c;
+}
+
+.wrap-data {
+  background-color: #59957c;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.number-title {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.number-para {
+  font-size: 1rem;
+  font-weight: 500;
+}
